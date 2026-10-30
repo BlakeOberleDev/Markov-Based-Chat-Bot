@@ -1,0 +1,31 @@
+{
+    "the": {
+        "low": 0.25,
+        "amber": 0.5,
+        "scent": 0.25
+    },
+    "low": {
+        "hum": 0.7,
+        "light": 0.3
+    },
+    "amber": {
+        "glow": 0.6,
+        "leaves": 0.4
+    },
+    "scent": {
+        "of": 0.8,
+        "fades": 0.2
+    },
+    "of": {
+        "pine": 0.5,
+        "rain": 0.5
+    },
+    "hum": {
+        "resonates": 0.9,
+        "stops": 0.1
+    },
+    "glow": {
+        "brightens": 0.4,
+        "dims": 0.6
+    }
+}
