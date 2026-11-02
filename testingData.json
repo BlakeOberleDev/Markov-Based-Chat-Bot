@@ -1,31 +1,99 @@
 {
-    "the": {
-        "low": 0.25,
-        "amber": 0.5,
-        "scent": 0.25
-    },
-    "low": {
-        "hum": 0.7,
-        "light": 0.3
-    },
-    "amber": {
-        "glow": 0.6,
-        "leaves": 0.4
-    },
-    "scent": {
-        "of": 0.8,
-        "fades": 0.2
-    },
-    "of": {
-        "pine": 0.5,
-        "rain": 0.5
-    },
-    "hum": {
-        "resonates": 0.9,
-        "stops": 0.1
-    },
-    "glow": {
-        "brightens": 0.4,
-        "dims": 0.6
-    }
+"the": {
+"low": 0.25,
+"amber": 0.5,
+"scent": 0.25
+},
+"low": {
+"hum": 0.4,
+"light": 0.3,
+"clouds": 0.3
+},
+"amber": {
+"glow": 0.4,
+"leaves": 0.4,
+"light": 0.2
+},
+"scent": {
+"of": 0.8,
+"fades": 0.2
+},
+"of": {
+"pine": 0.4,
+"rain": 0.4,
+"smoke": 0.2
+},
+"hum": {
+"resonates": 0.6,
+"stops": 0.2,
+"grows": 0.2
+},
+"glow": {
+"brightens": 0.4,
+"dims": 0.4,
+"fades": 0.2
+},
+"light": {
+"pierces": 0.3,
+"fades": 0.5,
+"shines": 0.2
+},
+"clouds": {
+"gather": 0.6,
+"part": 0.4
+},
+"leaves": {
+"rustle": 0.5,
+"fall": 0.3,
+"dance": 0.2
+},
+"pine": {
+"needles": 0.5,
+"trees": 0.3,
+"forest": 0.2
+},
+"rain": {
+"falls": 0.6,
+"washes": 0.4
+},
+"smoke": {
+"rises": 0.7,
+"clears": 0.3
+},
+"fades": {
+"into": 0.6,
+"away": 0.4
+},
+"into": {
+"the": 0.8,
+"darkness": 0.2
+},
+"away": {
+"quickly": 0.5,
+"slowly": 0.5
+},
+"rustle": {
+"in": 0.7,
+"softly": 0.3
+},
+"in": {
+"the": 0.9,
+"silence": 0.1
+},
+"falls": {
+"gently": 0.5,
+"heavily": 0.5
+},
+"rises": {
+"up": 0.6,
+"slowly": 0.4
+},
+"darkness": {
+"falls": 0.7,
+"grows": 0.3
+},
+"silence": {
+"echoes": 0.6,
+"returns": 0.4
+}
 }
