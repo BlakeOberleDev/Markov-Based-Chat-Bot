@@ -9,6 +9,9 @@ production/
 .project
 bin/
 
+#VSCode
+.VSCode/
+
 # Local testing and data files
 test.py
 data.txt
