@@ -1,17 +1,1 @@
-# JetBrains IDEs (IntelliJ, PyCharm)
-.idea/
-out/
-production/
-
-# Eclipse IDE
-.settings/
-.classpath
-.project
-bin/
-
-#VSCode
-.VSCode/
-
-# Local testing and data files
 test.py
-data.txt
