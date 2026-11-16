@@ -1,4 +1,6 @@
-CORPUS_URLS = [
+import trafilatura
+import time
+links = [
     "https://www.gutenberg.org/cache/epub/1524/pg1524.txt",          # 1. Gutenberg (Hamlet)
     "https://en.wikipedia.org/wiki/Markov_chain",                    # 2. Wikipedia
     "https://avalon.law.yale.edu/19th_century/gettyb.asp",           # 3. Yale Avalon
@@ -50,3 +52,24 @@ CORPUS_URLS = [
     "https://www.gutenberg.org/cache/epub/120/pg120.txt",            # 49. Gutenberg (Treasure Island)
     "https://www.gutenberg.org/cache/epub/2701/pg2701.txt",          # 50. Gutenberg (Moby-Dick)
 ]
+
+#Create algortithm for adding dictionaries
+#
+
+for link in links:
+    downloaded = trafilatura.fetch_url(link)
+    text = trafilatura.extract(downloaded)
+    firstgendata = {
+        "the": {
+            "transitions": ["glow", "new", "glow", "brand"],
+            "form": ""
+        },
+
+        "red": {
+            "transitions": ["dog", "cat", "sky"],
+            "form": ""
+        }
+    }
+
+    #time delay to avoid Ddossing
+    time.sleep(5)
