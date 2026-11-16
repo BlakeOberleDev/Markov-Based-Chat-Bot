@@ -1,0 +1,61 @@
+CORPUS_URLS = [
+    # 1. Dialogue, Plays & Dramatic Voice
+    "https://www.gutenberg.org/cache/epub/1524/pg1524.txt",
+    "https://www.gutenberg.org/cache/epub/1533/pg1533.txt",
+    "https://www.gutenberg.org/cache/epub/844/pg844.txt",
+    "https://www.gutenberg.org/cache/epub/2542/pg2542.txt",
+    "https://www.gutenberg.org/cache/epub/3748/pg3748.txt",
+    "https://www.gutenberg.org/cache/epub/16328/pg16328.txt",
+    "https://classics.mit.edu/Sophocles/antigone.pl.txt",
+    "https://classics.mit.edu/Plato/republic.2.i.html",
+    "https://www.gutenberg.org/cache/epub/11/pg11.txt",
+    "https://www.gutenberg.org/cache/epub/12/pg12.txt",
+
+    # 2. Encyclopedic & Clear Explanatory Prose
+    "https://en.wikipedia.org/wiki/Markov_chain",
+    "https://en.wikipedia.org/wiki/Artificial_intelligence",
+    "https://en.wikipedia.org/wiki/Stoicism",
+    "https://en.wikipedia.org/wiki/History_of_the_Internet",
+    "https://en.wikipedia.org/wiki/Game_theory",
+    "https://en.wikipedia.org/wiki/Cognitive_bias",
+    "https://en.wikipedia.org/wiki/Distributed_computing",
+    "https://en.wikipedia.org/wiki/Cryptography",
+    "https://en.wikipedia.org/wiki/Evolutionary_biology",
+    "https://en.wikipedia.org/wiki/Thermodynamics",
+
+    # 3. Essays, Philosophy & First-Person Reflection
+    "https://www.gutenberg.org/cache/epub/16643/pg16643.txt",
+    "https://www.gutenberg.org/cache/epub/3600/pg3600.txt",
+    "https://www.gutenberg.org/cache/epub/2680/pg2680.txt",
+    "https://www.gutenberg.org/cache/epub/10615/pg10615.txt",
+    "https://www.gutenberg.org/cache/epub/5827/pg5827.txt",
+    "https://www.gutenberg.org/cache/epub/205/pg205.txt",
+    "https://www.gutenberg.org/cache/epub/1232/pg1232.txt",
+    "https://www.gutenberg.org/cache/epub/132/pg132.txt",
+    "https://paulgraham.com/makersschedule.html",
+    "https://paulgraham.com/avg.html",
+
+    # 4. Speeches, Rhetoric & Persuasive Cadence
+    "https://avalon.law.yale.edu/19th_century/gettyb.asp",
+    "https://avalon.law.yale.edu/20th_century/kennedy.asp",
+    "https://avalon.law.yale.edu/20th_century/froos1.asp",
+    "https://avalon.law.yale.edu/18th_century/washing.asp",
+    "https://avalon.law.yale.edu/19th_century/lincoln2.asp",
+    "https://www.archives.gov/founding-docs/declaration-transcript",
+    "https://www.archives.gov/founding-docs/constitution-transcript",
+    "https://www.gutenberg.org/cache/epub/2376/pg2376.txt",
+    "https://www.gutenberg.org/cache/epub/23/pg23.txt",
+    "https://www.gutenberg.org/cache/epub/147/pg147.txt",
+
+    # 5. Fast-Paced Fiction, Sci-Fi & Mystery
+    "https://www.gutenberg.org/cache/epub/1661/pg1661.txt",
+    "https://www.gutenberg.org/cache/epub/35/pg35.txt",
+    "https://www.gutenberg.org/cache/epub/36/pg36.txt",
+    "https://www.gutenberg.org/cache/epub/84/pg84.txt",
+    "https://www.gutenberg.org/cache/epub/345/pg345.txt",
+    "https://www.gutenberg.org/cache/epub/43/pg43.txt",
+    "https://www.gutenberg.org/cache/epub/174/pg174.txt",
+    "https://www.gutenberg.org/cache/epub/215/pg215.txt",
+    "https://www.gutenberg.org/cache/epub/120/pg120.txt",
+    "https://www.gutenberg.org/cache/epub/2701/pg2701.txt",
+]
