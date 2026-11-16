@@ -1,0 +1,19 @@
+{
+    "the": {
+        "transitions": {
+            "glow": 0.5,
+            "new": 0.25,
+            "brand": 0.25
+        },
+        "form": "" 
+    },
+
+    "red": {
+        "transitions": {
+            "dog": 0.33,
+            "cat": 0.33,
+            "sky": 0.33
+        },
+        "form": "" 
+    }
+}
