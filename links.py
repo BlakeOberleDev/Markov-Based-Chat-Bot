@@ -1,4 +1,4 @@
-CORPUS_URLS = [
+links = [
     "https://www.gutenberg.org/cache/epub/1524/pg1524.txt",          # 1. Gutenberg (Hamlet)
     "https://en.wikipedia.org/wiki/Markov_chain",                    # 2. Wikipedia
     "https://avalon.law.yale.edu/19th_century/gettyb.asp",           # 3. Yale Avalon

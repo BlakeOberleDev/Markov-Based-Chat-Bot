@@ -1,0 +1,9 @@
+Loop through each word and grab the next word, throwing that into the transitions array, keep forms blank for now
+
+Exclude all punctiation except . ! ?
+
+Treat the end of sentance punctiation as its own word with transitions
+
+Treat the end of webpage as a space with its own transitions
+
+firstgendata["the"]["form"]
