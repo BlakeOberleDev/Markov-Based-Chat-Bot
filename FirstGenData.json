@@ -1,11 +1,16 @@
 {
     "the": {
-        "transitions": ["glow", "new", "glow", "brand"],
+        "transitions": ["glow", "new", "glow", "brand", "dog"],
         "form": "" 
     },
 
     "red": {
         "transitions": ["dog", "cat", "sky"],
         "form": "" 
+    },
+
+    "dog": {
+        "transitions": ["is"],
+        "form": ""
     }
 }
