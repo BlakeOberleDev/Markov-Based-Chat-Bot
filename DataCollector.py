@@ -4,97 +4,154 @@ import time
 import trafilatura
 
 links = [
-    "https://www.gutenberg.org/cache/epub/1524/pg1524.txt",          # 1. Gutenberg (Hamlet)
-    "https://en.wikipedia.org/wiki/Markov_chain",                    # 2. Wikipedia
-    "https://avalon.law.yale.edu/19th_century/gettyb.asp",           # 3. Yale Avalon
-    "https://classics.mit.edu/Sophocles/antigone.pl.txt",            # 4. MIT Classics
-    "https://paulgraham.com/makersschedule.html",                    # 5. Paul Graham
-    "https://www.archives.gov/founding-docs/declaration-transcript", # 6. National Archives
-    "https://www.gutenberg.org/cache/epub/1533/pg1533.txt",          # 7. Gutenberg (Macbeth)
-    "https://en.wikipedia.org/wiki/Artificial_intelligence",         # 8. Wikipedia
-    "https://avalon.law.yale.edu/20th_century/kennedy.asp",          # 9. Yale Avalon
-    "https://classics.mit.edu/Plato/republic.2.i.html",              # 10. MIT Classics
-    "https://paulgraham.com/avg.html",                               # 11. Paul Graham
-    "https://www.archives.gov/founding-docs/constitution-transcript",# 12. National Archives
-    "https://www.gutenberg.org/cache/epub/844/pg844.txt",            # 13. Gutenberg (Earnest)
-    "https://en.wikipedia.org/wiki/Stoicism",                        # 14. Wikipedia
-    "https://avalon.law.yale.edu/20th_century/froos1.asp",           # 15. Yale Avalon
-    "https://www.gutenberg.org/cache/epub/2542/pg2542.txt",          # 16. Gutenberg (A Doll's House)
-    "https://en.wikipedia.org/wiki/History_of_the_Internet",         # 17. Wikipedia
-    "https://avalon.law.yale.edu/18th_century/washing.asp",          # 18. Yale Avalon
-    "https://www.gutenberg.org/cache/epub/3748/pg3748.txt",          # 19. Gutenberg (Pygmalion)
-    "https://en.wikipedia.org/wiki/Game_theory",                     # 20. Wikipedia
-    "https://avalon.law.yale.edu/19th_century/lincoln2.asp",         # 21. Yale Avalon
-    "https://www.gutenberg.org/cache/epub/16328/pg16328.txt",        # 22. Gutenberg (Cyrano)
-    "https://en.wikipedia.org/wiki/Cognitive_bias",                  # 23. Wikipedia
-    "https://www.gutenberg.org/cache/epub/11/pg11.txt",              # 24. Gutenberg (Alice)
-    "https://en.wikipedia.org/wiki/Distributed_computing",           # 25. Wikipedia
-    "https://www.gutenberg.org/cache/epub/12/pg12.txt",              # 26. Gutenberg (Looking-Glass)
-    "https://en.wikipedia.org/wiki/Cryptography",                    # 27. Wikipedia
-    "https://www.gutenberg.org/cache/epub/16643/pg16643.txt",        # 28. Gutenberg (Emerson)
-    "https://en.wikipedia.org/wiki/Evolutionary_biology",            # 29. Wikipedia
-    "https://www.gutenberg.org/cache/epub/3600/pg3600.txt",          # 30. Gutenberg (Montaigne)
-    "https://en.wikipedia.org/wiki/Thermodynamics",                  # 31. Wikipedia
-    "https://www.gutenberg.org/cache/epub/2680/pg2680.txt",          # 32. Gutenberg (Meditations)
-    "https://www.gutenberg.org/cache/epub/10615/pg10615.txt",        # 33. Gutenberg (Hume)
-    "https://www.gutenberg.org/cache/epub/5827/pg5827.txt",          # 34. Gutenberg (Russell)
-    "https://www.gutenberg.org/cache/epub/205/pg205.txt",            # 35. Gutenberg (Walden)
-    "https://www.gutenberg.org/cache/epub/1232/pg1232.txt",          # 36. Gutenberg (The Prince)
-    "https://www.gutenberg.org/cache/epub/132/pg132.txt",            # 37. Gutenberg (Art of War)
-    "https://www.gutenberg.org/cache/epub/2376/pg2376.txt",          # 38. Gutenberg (Up from Slavery)
-    "https://www.gutenberg.org/cache/epub/23/pg23.txt",              # 39. Gutenberg (Douglass)
-    "https://www.gutenberg.org/cache/epub/147/pg147.txt",            # 40. Gutenberg (Common Sense)
-    "https://www.gutenberg.org/cache/epub/1661/pg1661.txt",          # 41. Gutenberg (Sherlock Holmes)
-    "https://www.gutenberg.org/cache/epub/35/pg35.txt",              # 42. Gutenberg (Time Machine)
-    "https://www.gutenberg.org/cache/epub/36/pg36.txt",              # 43. Gutenberg (War of the Worlds)
-    "https://www.gutenberg.org/cache/epub/84/pg84.txt",              # 44. Gutenberg (Frankenstein)
-    "https://www.gutenberg.org/cache/epub/345/pg345.txt",            # 45. Gutenberg (Dracula)
-    "https://www.gutenberg.org/cache/epub/43/pg43.txt",              # 46. Gutenberg (Jekyll & Hyde)
-    "https://www.gutenberg.org/cache/epub/174/pg174.txt",            # 47. Gutenberg (Dorian Gray)
-    "https://www.gutenberg.org/cache/epub/215/pg215.txt",            # 48. Gutenberg (Call of the Wild)
-    "https://www.gutenberg.org/cache/epub/120/pg120.txt",            # 49. Gutenberg (Treasure Island)
-    "https://www.gutenberg.org/cache/epub/2701/pg2701.txt",          # 50. Gutenberg (Moby-Dick)
+  "https://www.thisamericanlife.org/800/transcript",                                      # 1. This American Life (Storytelling & interviews)
+  "https://imsdb.com/scripts/Pulp-Fiction.html",                                          # 2. IMSDB (Sharp conversational dialogue)
+  "https://www.npr.org/transcripts/1197954421",                                           # 3. NPR Fresh Air / Podcast transcript
+  "https://waitbutwhy.com/2014/05/life-weeks.html",                                       # 4. Wait But Why (Casual conversational blog)
+  "https://www.theverge.com/2023/10/24/23929732/decoder-nilay-patel-interview-transcript", # 5. Decoder Podcast transcript
+  "https://www.thisamericanlife.org/795/transcript",                                      # 6. This American Life
+  "https://imsdb.com/scripts/Good-Will-Hunting.html",                                     # 7. IMSDB (Natural back-and-forth banter)
+  "https://www.npr.org/transcripts/1197958234",                                           # 8. NPR Transcript
+  "https://www.askamanager.org/2023/11/update-the-new-hire-who-refused-to-do-any-work.html", # 9. Ask A Manager (Everyday workplace stories/comments)
+  "https://tim.blog/2018/09/20/the-tim-ferriss-show-transcripts-naval-ravikant/",         # 10. Tim Ferriss Show (Long-form conversation)
+  "https://www.thisamericanlife.org/780/transcript",                                      # 11. This American Life
+  "https://imsdb.com/scripts/The-Social-Network.html",                                    # 12. IMSDB (Fast-paced modern dialogue)
+  "https://www.npr.org/transcripts/1197956389",                                           # 13. NPR Transcript
+  "https://waitbutwhy.com/2013/12/how-to-beat-procrastination.html",                      # 14. Wait But Why
+  "https://lexfridman.com/john-carmack-transcript/",                                      # 15. Lex Fridman Podcast (Casual deep-dive chat)
+  "https://www.thisamericanlife.org/750/transcript",                                      # 16. This American Life
+  "https://imsdb.com/scripts/Superbad.html",                                              # 17. IMSDB (Casual teen/friend banter)
+  "https://www.npr.org/transcripts/1197959012",                                           # 18. NPR Transcript
+  "https://www.askamanager.org/2022/07/my-coworker-keeps-stealing-my-lunch-and-blaming-the-ghost.html", # 19. Ask A Manager
+  "https://tim.blog/2020/05/07/hugh-jackman-transcript/",                                 # 20. Tim Ferriss Show
+  "https://www.thisamericanlife.org/700/transcript",                                      # 21. This American Life
+  "https://imsdb.com/scripts/When-Harry-Met-Sally.html",                                  # 22. IMSDB (Pure conversational dialogue)
+  "https://www.npr.org/transcripts/1197960145",                                           # 23. NPR Transcript
+  "https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html",             # 24. Wait But Why
+  "https://lexfridman.com/george-hotz-3-transcript/",                                     # 25. Lex Fridman Podcast
+  "https://www.thisamericanlife.org/650/transcript",                                      # 26. This American Life
+  "https://imsdb.com/scripts/The-Big-Lebowski.html",                                      # 27. IMSDB (Laid-back colloquial speech)
+  "https://www.npr.org/transcripts/1197961278",                                           # 28. NPR Transcript
+  "https://www.askamanager.org/2021/10/my-employee-wasnt-actually-doing-her-job-for-two-years.html", # 29. Ask A Manager
+  "https://tim.blog/2019/10/03/neil-gaiman-transcript/",                                  # 30. Tim Ferriss Show
+  "https://www.thisamericanlife.org/600/transcript",                                      # 31. This American Life
+  "https://imsdb.com/scripts/Juno.html",                                                  # 32. IMSDB (Quirky casual dialogue)
+  "https://www.npr.org/transcripts/1197962411",                                           # 33. NPR Transcript
+  "https://waitbutwhy.com/2014/10/religion-for-the-nonreligious.html",                    # 34. Wait But Why
+  "https://lexfridman.com/magnus-carlsen-transcript/",                                    # 35. Lex Fridman Podcast
+  "https://www.thisamericanlife.org/550/transcript",                                      # 36. This American Life
+  "https://imsdb.com/scripts/Groundhog-Day.html",                                         # 37. IMSDB (Everyday conversational reactions)
+  "https://www.npr.org/transcripts/1197963544",                                           # 38. NPR Transcript
+  "https://www.askamanager.org/2019/09/my-boss-wants-me-to-lie-about-why-im-leaving.html", # 39. Ask A Manager
+  "https://tim.blog/2017/05/07/terry-crews-transcript/",                                  # 40. Tim Ferriss Show
+  "https://www.thisamericanlife.org/500/transcript",                                      # 41. This American Life
+  "https://imsdb.com/scripts/Toy-Story.html",                                             # 42. IMSDB (Clean, punchy dialogue)
+  "https://www.npr.org/transcripts/1197964677",                                           # 43. NPR Transcript
+  "https://waitbutwhy.com/2016/03/cryonics.html",                                         # 44. Wait But Why
+  "https://lexfridman.com/huberman-lab-transcript/",                                      # 45. Lex Fridman Podcast
+  "https://www.thisamericanlife.org/450/transcript",                                      # 46. This American Life
+  "https://imsdb.com/scripts/Knives-Out.html",                                            # 47. IMSDB (Modern ensemble banter)
+  "https://www.npr.org/transcripts/1197965810",                                           # 48. NPR Transcript
+  "https://www.askamanager.org/2020/04/my-coworker-is-faking-working-from-home.html",     # 49. Ask A Manager
+  "https://tim.blog/2016/12/20/jocko-willink-transcript/",                                # 50. Tim Ferriss Show
 ]
 
-# Initialize the master dictionary to hold all word transitions
+# Common boilerplate phrases found at the start/end of transcripts & blogs
+BOILERPLATE_PATTERNS = re.compile(
+    r"(subscribe|newsletter|copyright|all rights reserved|transcript provided|"
+    r"click here|read more|follow us|advertisement|sponsored by|cookie policy)",
+    re.IGNORECASE,
+)
+
+# Common abbreviations whose periods shouldn't end a sentence
+ABBREVIATIONS = re.compile(
+    r"\b(mr|mrs|ms|dr|prof|sr|jr|st|vs|etc|eg|ie|us|uk)\.",
+    re.IGNORECASE,
+)
+
+
+def clean_transcript_text(raw_text):
+    # 1. Normalize curly apostrophes/quotes so contractions stay together
+    text = raw_text.replace("’", "'").replace("‘", "'")
+
+    # 2. Strip bracketed stage directions / audio cues like [laughter] or (applause)
+    text = re.sub(r"\[[^\]]*\]|\([^)]*\)", " ", text)
+
+    # 3. Strip URLs and email addresses
+    text = re.sub(r"https?://\S+|www\.\S+|\S+@\S+", " ", text)
+
+    # 4. Remove periods from common abbreviations (Mr. -> Mr) so they don't fake sentence ends
+    text = ABBREVIATIONS.sub(r"\1", text)
+
+    cleaned_lines = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+
+        # 5. Skip boilerplate/footer lines
+        if BOILERPLATE_PATTERNS.search(line):
+            continue
+
+        # 6. Strip speaker prefixes at the start of lines (e.g., "NILAY PATEL:" or "Host:")
+        line = re.sub(r"^[A-Za-z][A-Za-z\s\.\-]{1,25}:\s*", "", line)
+
+        # 7. Skip standalone ALL-CAPS headers or screenplay character cues (e.g., "ACT I", "JULES")
+        if line.isupper() and len(line.split()) <= 5:
+            continue
+
+        # 8. Skip very short non-sentence lines (titles, dates, bylines without punctuation)
+        if len(line.split()) < 3 and not line.endswith((".", "!", "?")):
+            continue
+
+        cleaned_lines.append(line)
+
+    joined = " ".join(cleaned_lines)
+
+    # 9. Collapse repeated punctuation ("..." or "?!") into a single terminator
+    joined = re.sub(r"([.!?])+", r"\1", joined)
+
+    return joined
+
+
 markov_data = {}
 
 for link in links:
-  downloaded = trafilatura.fetch_url(link)
-  if not downloaded:
-    continue
+    downloaded = trafilatura.fetch_url(link)
+    if not downloaded:
+        continue
 
-  text = trafilatura.extract(downloaded)
-  if not text:
-    continue
+    # favor_precision=True cuts out extra navbars/sidebars; no_fallback=True avoids scraping messy raw HTML
+    text = trafilatura.extract(
+        downloaded,
+        include_comments=False,
+        include_tables=False,
+        favor_precision=True,
+    )
+    if not text:
+        continue
 
-  # Tokenize the text
-  # Extracts the words (now tokens) using \w+ and counts ., ?, and ! as words too
-  tokens = re.findall(r"\w+|[.!?]", text)
+    cleaned = clean_transcript_text(text)
 
-  # Build the transitions from the stream of tokens
-  for i in range(len(tokens) - 1):
-    current_word = tokens[i].lower()
-    next_word = tokens[i + 1].lower()
+    # Tokenize: letters-only words (keeping internal apostrophes like don't) + sentence enders
+    tokens = re.findall(r"[a-zA-Z]+(?:'[a-zA-Z]+)?|[.!?]", cleaned)
 
-    # make sure the current word exists in the dictionary
-    if current_word not in markov_data:
-      markov_data[current_word] = {"transitions": [], "form": ""}
+    for i in range(len(tokens) - 1):
+        current_word = tokens[i].lower()
+        next_word = tokens[i + 1].lower()
 
-    # append the next word to the transitions list
-    markov_data[current_word]["transitions"].append(next_word)
+        if current_word not in markov_data:
+            markov_data[current_word] = {"transitions": [], "form": ""}
 
-  # Handle the end of the webpage, treat the final word as transitioning to a space
-  if tokens:
-    last_word = tokens[-1].lower()
-    if last_word not in markov_data:
-      markov_data[last_word] = {"transitions": [], "form": ""}
-    markov_data[last_word]["transitions"].append(" ")
+        markov_data[current_word]["transitions"].append(next_word)
 
-  # time delay to avoid website bot detection
-  time.sleep(5)
+    if tokens:
+        last_word = tokens[-1].lower()
+        if last_word not in markov_data:
+            markov_data[last_word] = {"transitions": [], "form": ""}
+        markov_data[last_word]["transitions"].append(" ")
 
-# export as a JSON file
-# Write the fully populated dictionary to a JSON file formatted with indentations for readability
+    time.sleep(5)
+
 with open("Markov_FirstGenData.json", "w", encoding="utf-8") as f:
-  json.dump(markov_data, f, indent=4)
+    json.dump(markov_data, f, indent=4)
