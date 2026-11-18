@@ -22,6 +22,7 @@ public class fun extends Application {
 	double scorePerSecond = 0;*/
 	Boolean talking = true;
 	Boolean mouthState = false;
+	Boolean blinkState = false;
 	String output = "Hello There! I am Tod Henderson the best guy around!";
 	TextArea dialogue = new TextArea();
 	Timeline typewriter;
@@ -54,20 +55,41 @@ public class fun extends Application {
     		mouthCloseV.setLayoutY(145);
     		mouthCloseV.setVisible(!mouthState);
     		
-    		try {
-    		    java.io.File folder = new java.io.File(getClass().getResource("assets/stick.png").toURI()).getParentFile();
-    		    System.out.println("Looking in: " + folder.getAbsolutePath());
-    		    for (String f : folder.list()) System.out.println(" - " + f);
-    		} catch (Exception ex) { ex.printStackTrace(); }
+    		
     		
     		Image eyeball1 = new Image(getClass().getResourceAsStream("assets/eyeball.png"));
     		ImageView eyeball1V = new ImageView(eyeball1);
-    		eyeball1V.setScaleX(0.3);   
-    		eyeball1V.setScaleY(0.3);  
+    		eyeball1V.setFitWidth(90);
     		eyeball1V.setPreserveRatio(true);
-    		eyeball1V.setLayoutX(640);
-    		eyeball1V.setLayoutY(145);
-    		//eyeball1V.setVisible();
+    		eyeball1V.setLayoutX(605);
+    		eyeball1V.setLayoutY(87);
+    		eyeball1V.setVisible(!blinkState);
+    		
+    		Image eyeball2 = new Image(getClass().getResourceAsStream("assets/eyeball.png"));
+    		ImageView eyeball2V = new ImageView(eyeball2);
+    		eyeball2V.setFitWidth(90);
+    		eyeball2V.setPreserveRatio(true);
+    		eyeball2V.setLayoutX(650);
+    		eyeball2V.setLayoutY(87);
+    		eyeball2V.setVisible(!blinkState);
+    		
+    		Image blink1 = new Image(getClass().getResourceAsStream("assets/blink.png"));
+    		ImageView blink1V = new ImageView(blink1);
+    		blink1V.setScaleX(0.05);   
+    		blink1V.setScaleY(0.1);
+    		blink1V.setPreserveRatio(true);
+    		blink1V.setLayoutX(250);
+    		blink1V.setLayoutY(-61);
+    		blink1V.setVisible(blinkState);
+    		
+    		Image blink2 = new Image(getClass().getResourceAsStream("assets/blink.png"));
+    		ImageView blink2V = new ImageView(blink2);
+    		blink2V.setScaleX(0.05);   
+    		blink2V.setScaleY(0.1);
+    		blink2V.setPreserveRatio(true);
+    		blink2V.setLayoutX(300);
+    		blink2V.setLayoutY(-61);
+    		blink2V.setVisible(blinkState);
     		
     		
     		Rectangle dialogueBox = new Rectangle(50, 50, 450, 250);
@@ -89,7 +111,9 @@ public class fun extends Application {
     		    "-fx-border-width: 2px; " +
     		    "-fx-border-radius: 5px; " +
     		    "-fx-background-radius: 5px; " +
-    		    "-fx-font-size: 22px;"
+    		    "-fx-font-size: 22px;" +
+    		    "-fx-focus-color: transparent;" +
+    		    "-fx-faint-focus-color: transparent;"
     		);
     			
     		Label nameTag = new Label("John Markov");
@@ -111,7 +135,9 @@ public class fun extends Application {
     			    "-fx-border-width: 2px; " +
     			    "-fx-border-radius: 5px; " +
     			    "-fx-background-radius: 5px; " +
-    			    "-fx-font-size: 18px;"
+    			    "-fx-font-size: 18px;" +
+    			    "-fx-focus-color: transparent;" +
+        		    "-fx-faint-focus-color: transparent;"
     			);
     		inputBox.setOnKeyPressed(e -> {
     		    if (e.getCode() == KeyCode.ENTER) {
@@ -130,12 +156,12 @@ public class fun extends Application {
         
         Pane roots = new Pane();
         roots.setStyle("-fx-background-color: white;");
-        roots.getChildren().addAll(stickView, dialogueBox, dialogue, mouthOpenV, mouthCloseV, nameTag, inputBox, eyeball1V);
+        roots.getChildren().addAll(stickView, dialogueBox, dialogue, mouthOpenV, mouthCloseV, nameTag, inputBox, eyeball1V, eyeball2V, blink1V, blink2V);
         
         Scene scene = new Scene(roots, 800, 500);
         primaryStage.setTitle("Markov Chat Bot");
         primaryStage.setScene(scene);
-        Timeline sPS = new Timeline();
+        Timeline mouth = new Timeline();
         
         //this keyFrame makes his mouth move on a loop when talking == true
         KeyFrame keyFrame = new KeyFrame(Duration.millis(100), e -> {
@@ -150,9 +176,11 @@ public class fun extends Application {
         		}
         });
         
-        sPS.getKeyFrames().add(keyFrame);
-        sPS.setCycleCount(Timeline.INDEFINITE);
-        sPS.play();
+        scheduleBlink(eyeball1V, eyeball2V, blink1V, blink2V);
+        mouth.getKeyFrames().add(keyFrame);
+        mouth.setCycleCount(Timeline.INDEFINITE);
+        mouth.play();
+        
         say(output);
         primaryStage.show();
     }
@@ -181,6 +209,33 @@ public class fun extends Application {
         typewriter.setCycleCount(newText.length());
         typewriter.setOnFinished(e -> talking = false);
         typewriter.play();
+    }
+    
+    //blinks the eyes on a random interval between 2 and 4 seconds
+    public void scheduleBlink(ImageView eyeball1V, ImageView eyeball2V, ImageView blink1V, ImageView blink2V) {
+        double randomDelay = 2000 + (Math.random() * 2000);
+
+        PauseTransition wait = new PauseTransition(Duration.millis(randomDelay));
+        wait.setOnFinished(e -> {
+            blinkState = true;
+            eyeball1V.setVisible(false);
+            eyeball2V.setVisible(false);
+            blink1V.setVisible(true);
+            blink2V.setVisible(true);
+
+            PauseTransition closeTime = new PauseTransition(Duration.millis(200));
+            closeTime.setOnFinished(event -> {
+                blinkState = false;
+                eyeball1V.setVisible(true);
+                eyeball2V.setVisible(true);
+                blink1V.setVisible(false);
+                blink2V.setVisible(false);
+
+                scheduleBlink(eyeball1V, eyeball2V, blink1V, blink2V); // Loop with a new random time
+            });
+            closeTime.play();
+        });
+        wait.play();
     }
     
     public static void main(String[] args) {
