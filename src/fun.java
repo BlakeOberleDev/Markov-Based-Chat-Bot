@@ -6,130 +6,89 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class fun extends Application {
     
-	double score = 0;
-	double scorePerSecond = 0;
-	
+	/*double score = 0;
+	double scorePerSecond = 0;*/
+	Boolean talking = true;
+	Boolean mouthState = false;
 	
 	
     @Override
     public void start(Stage primaryStage) {
-    	
+    		Image stickGuy = new Image(getClass().getResourceAsStream("assets/stick.png"));
+    		ImageView stickView = new ImageView(stickGuy);
+    		stickView.setScaleX(0.8);   
+    		stickView.setScaleY(0.8);  
+    		stickView.setPreserveRatio(true);
+    		stickView.setLayoutX(500);
+    		stickView.setLayoutY(-15);
+    		
+    		Image mouthOpen = new Image(getClass().getResourceAsStream("assets/stickMouthOpen.png"));
+    		ImageView mouthOpenV = new ImageView(mouthOpen);
+    		mouthOpenV.setScaleX(1.6);   
+    		mouthOpenV.setScaleY(1.2);  
+    		mouthOpenV.setPreserveRatio(true);
+    		mouthOpenV.setLayoutX(640);
+    		mouthOpenV.setLayoutY(140);
+    		mouthOpenV.setVisible(mouthState);
+    		
+    		Image mouthClose = new Image(getClass().getResourceAsStream("assets/stickMouthClose.png"));
+    		ImageView mouthCloseV = new ImageView(mouthClose);
+    		mouthCloseV.setScaleX(1.6);   
+    		mouthCloseV.setScaleY(1.2);  
+    		mouthCloseV.setPreserveRatio(true);
+    		mouthCloseV.setLayoutX(640);
+    		mouthCloseV.setLayoutY(145);
+    		mouthCloseV.setVisible(!mouthState);
     		
     		
-    	
-    		Label scoreLabel = new Label("0");
-    		scoreLabel.setText(String.format("$%.2f", score));
-    		scoreLabel.setStyle("-fx-border-color: black; " +     
-                            "-fx-border-width: 2px; " +       
-                            "-fx-border-radius: 5px; " +      
-                            "-fx-background-color: lightgray; " +
-                            "-fx-padding: 0px 0px;" +
-                            "-fx-font-size: 75px;" + 
-                            "-fx-alignment: center;");
-    		scoreLabel.setLayoutX(175);
-    		scoreLabel.setLayoutY(25);
-    		scoreLabel.setPrefWidth(400);
-    		scoreLabel.setPrefHeight(130);
-    		Label sPSLabel = new Label(0 + "$/s");
-    		sPSLabel.setText(scorePerSecond + "$/s");
-    		sPSLabel.setStyle("-fx-font-size: 15px;" + 
-                    			"-fx-alignment: center;");
-    		sPSLabel.setLayoutX(361);
-    		sPSLabel.setLayoutY(127);
-    	
-    	
-        Button button1 = new Button("  $0.50\n+$0.01/s");
-        String defaultStyle = 
-                "-fx-border-color: black; " +     
-                "-fx-border-width: 2px; " +       
-                "-fx-border-radius: 5px; " +      
-                "-fx-background-color: lightgray; " +
-                "-fx-padding: 0px 0px;" +
-                "-fx-font-size: 20px;";
-        button1.setStyle(defaultStyle);
-        button1.setOnMousePressed(e -> button1.setStyle(defaultStyle.replace("lightgray", "darkgray")));
-        button1.setOnMouseReleased(e -> button1.setStyle(defaultStyle));
-        button1.setOnAction(e -> {
-        		if (score >= 0.50) {
-        			score = score - 0.50;
-        		
-        		scorePerSecond = scorePerSecond + 0.01;
-        		sPSLabel.setText(scorePerSecond + "$/s");
-        		scoreLabel.setText(String.format("$%.2f", score));
-        		}
-        });
-        button1.setLayoutX(25);
-        button1.setLayoutY(25);
-        button1.setPrefWidth(125);
-        button1.setPrefHeight(95);
+    		Rectangle dialogueBox = new Rectangle(50, 50, 220, 150);
+            dialogueBox.setFill(Color.LIGHTGRAY);
+            dialogueBox.setStroke(Color.BLACK);
+            dialogueBox.setWidth(450);
+            dialogueBox.setHeight(250);
+            dialogueBox.setStrokeWidth(2);
+            dialogueBox.setArcWidth(10);  
+            dialogueBox.setArcHeight(10);
         
-        Button button2 = new Button("  $50\n+$1/s");
-        button2.setStyle(defaultStyle);
-        button2.setOnMousePressed(e -> button2.setStyle(defaultStyle.replace("lightgray", "darkgray")));
-        button2.setOnMouseReleased(e -> button2.setStyle(defaultStyle));
-        button2.setOnAction(e -> {
-        		if (score >= 50) {
-        			score = score - 50;
-        		
-        		scorePerSecond = scorePerSecond + 1;
-        		sPSLabel.setText(scorePerSecond + "$/s");
-        		scoreLabel.setText(String.format("$%.2f", score));
-        		}
-        });
-        button2.setLayoutX(25);
-        button2.setLayoutY(130);
-        button2.setPrefWidth(125);
-        button2.setPrefHeight(95);
+        Label dialogue = new Label();
+            dialogue.setLayoutX(60);
+            dialogue.setLayoutY(60);
+            dialogue.setMaxWidth(450); // Keeps text inside the 220px box
+            dialogue.setWrapText(true);
+    	
+    		
         
-        Button button3 = new Button("  $750\n+$15/s");
-        button3.setStyle(defaultStyle);
-        button3.setOnMousePressed(e -> button3.setStyle(defaultStyle.replace("lightgray", "darkgray")));
-        button3.setOnMouseReleased(e -> button3.setStyle(defaultStyle));
-        button3.setOnAction(e -> {
-        		if (score >= 750) {
-        			score = score - 750;
-        		
-        		scorePerSecond = scorePerSecond + 15;
-        		sPSLabel.setText(scorePerSecond + "$/s");
-        		scoreLabel.setText(String.format("$%.2f", score));
-        		}
-        });
-        button3.setLayoutX(25);
-        button3.setLayoutY(235);
-        button3.setPrefWidth(125);
-        button3.setPrefHeight(95);
         
-        Button button4 = new Button("Work Job");
-        button4.setStyle(defaultStyle);
-        button4.setOnMousePressed(e -> button4.setStyle(defaultStyle.replace("lightgray", "darkgray")));
-        button4.setOnMouseReleased(e -> button4.setStyle(defaultStyle));
-        button4.setOnAction(e -> {
-        		score = score + 0.01;
-        		scoreLabel.setText(String.format("$%.2f", score));
-        		
-        });
-        button4.setLayoutX(175);
-        button4.setLayoutY(165);
-        button4.setPrefWidth(400);
-        button4.setPrefHeight(225);
         
         
         Pane roots = new Pane();
-        roots.getChildren().addAll(button1, button2, button3, button4, scoreLabel, sPSLabel);
+        roots.setStyle("-fx-background-color: white;");
+        roots.getChildren().addAll(stickView, dialogueBox, dialogue, mouthOpenV, mouthCloseV);
         
-        Scene scene = new Scene(roots, 600, 400);
-        primaryStage.setTitle("Job Simulator");
+        Scene scene = new Scene(roots, 800, 500);
+        primaryStage.setTitle("Markov Chat Bot");
         primaryStage.setScene(scene);
         Timeline sPS = new Timeline();
-        KeyFrame keyFrame = new KeyFrame(Duration.millis(10), e -> {
-        		score = score + scorePerSecond / 100;
-        		scoreLabel.setText(String.format("$%.2f", score));
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(150), e -> {
+        		if (talking) {
+        			mouthState = !mouthState;
+        			mouthCloseV.setVisible(!mouthState);
+        			mouthOpenV.setVisible(mouthState);
+        		} else if (talking == false) {
+        			mouthState = false;
+        			mouthCloseV.setVisible(!mouthState);
+        			mouthOpenV.setVisible(mouthState);
+        		}
         });
         sPS.getKeyFrames().add(keyFrame);
         sPS.setCycleCount(Timeline.INDEFINITE);
