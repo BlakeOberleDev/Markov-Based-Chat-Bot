@@ -1,7 +1,16 @@
+import argparse
 import json
 import re
 import time
 import trafilatura
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--trigrams-only",
+    action="store_true",
+    help="Build the trigram model without replacing Markov_FirstGenData.json.",
+)
+args = parser.parse_args()
 
 links = [
   "https://www.thisamericanlife.org/800/transcript",                                      # 1. This American Life (Storytelling & interviews)
@@ -115,6 +124,16 @@ def clean_transcript_text(raw_text):
 
 
 markov_data = {}
+trigram_counts = {}
+
+
+def add_trigram_transition(context, next_word):
+    if context not in trigram_counts:
+        trigram_counts[context] = {}
+    trigram_counts[context][next_word] = (
+        trigram_counts[context].get(next_word, 0) + 1
+    )
+
 
 for link in links:
     downloaded = trafilatura.fetch_url(link)
@@ -145,6 +164,24 @@ for link in links:
 
         markov_data[current_word]["transitions"].append(next_word)
 
+    # Store the next token for each two-word context; this preserves enough
+    # local word order for the bot to generate more coherent phrases.
+    for i in range(len(tokens) - 2):
+        first_word = tokens[i].lower()
+        second_word = tokens[i + 1].lower()
+        next_word = tokens[i + 2].lower()
+        add_trigram_transition(f"{first_word} {second_word}", next_word)
+
+    # Give the generator a learned way to begin at actual sentence starts.
+    for i, token in enumerate(tokens):
+        if i == 0 or tokens[i - 1] in {".", "!", "?"}:
+            first_word = token.lower()
+            add_trigram_transition("<START> <START>", first_word)
+            if i + 1 < len(tokens):
+                add_trigram_transition(
+                    f"<START> {first_word}", tokens[i + 1].lower()
+                )
+
     if tokens:
         last_word = tokens[-1].lower()
         if last_word not in markov_data:
@@ -153,5 +190,20 @@ for link in links:
 
     time.sleep(5)
 
-with open("Markov_FirstGenData.json", "w", encoding="utf-8") as f:
-    json.dump(markov_data, f, indent=4)
+if not args.trigrams_only:
+    with open("Markov_FirstGenData.json", "w", encoding="utf-8") as f:
+        json.dump(markov_data, f, indent=4)
+
+trigram_data = {}
+for context, transitions in trigram_counts.items():
+    total = sum(transitions.values())
+    trigram_data[context] = {
+        "transitions": {
+            next_word: count / total
+            for next_word, count in transitions.items()
+        },
+        "form": "",
+    }
+
+with open("Markov_ThirdGenData.json", "w", encoding="utf-8") as f:
+    json.dump(trigram_data, f, indent=2)
