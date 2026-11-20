@@ -32,7 +32,7 @@ public class CLI {
             Pattern.compile("[a-zA-Z]+(?:'[a-zA-Z]+)?|[.!?]");
 
     // Prevent any generated response from growing without bound.
-    private static final int MAX_SENTENCE_WORDS = 9;
+    private static final int MAX_SENTENCE_WORDS = 50;
 
     // The old model makes several attempts so the best-scoring reply can be chosen.
     private static final int RESPONSE_CANDIDATES = 32;
@@ -300,8 +300,8 @@ public class CLI {
             // Prefer continuations that use phrases from the user's message.
             addContextCandidates(userInput, trigramData, candidates);
             // Supplement those with older-model choices and complete sentences.
-            addWordCandidates(inputWords, wordData, candidates);
-            for (int i = 0; i < 8; i++) {
+            //    addWordCandidates(inputWords, wordData, candidates);
+            for (int i = 0; i < 40; i++) {
                 candidates.add(generateTrigramSentence(trigramData));
             }
         } else {
@@ -526,7 +526,7 @@ public class CLI {
         score += endsWithPunctuation ? 2.0 : -2.0;
         // Penalize very short replies, long replies, and repeated words.
         score -= Math.max(0, 4 - wordCount) * 1.5;
-        score -= Math.max(0, wordCount - 8) * 0.5;
+        score -= Math.max(0, wordCount - 48) * 0.5;
         score -= Math.max(0, wordCount - uniqueWords.size()) * 0.75;
         return score;
     }
@@ -616,6 +616,7 @@ public class CLI {
             // Skip a repeated word; punctuation is allowed to end the sentence
             // even if the same punctuation mark appeared earlier.
             if (!isPunctuation(choice.getKey())
+            			&& !COMMON_WORDS.contains(choice.getKey())
                     && usedWords.contains(choice.getKey())) {
                 continue;
             }

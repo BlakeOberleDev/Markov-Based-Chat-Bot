@@ -1,4 +1,8 @@
 /.gitrack
+/CLI$JsonParser.class
+/CLI$Transition.class
+/CLI$WordData.class
+/CLI.class
 /assets/
 /fun.class
 /override.class
