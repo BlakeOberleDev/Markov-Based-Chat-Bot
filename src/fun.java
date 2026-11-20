@@ -32,7 +32,7 @@ public class fun extends Application {
     Boolean talking = true;
     Boolean mouthState = false;
     Boolean blinkState = false;
-    String output = "Hello There! I am Tod Henderson the best guy around!";
+    String output = "Greetings, I am John Markov.";
     VBox dialogueContent = new VBox(10);
     ScrollPane dialogueScroll = new ScrollPane(dialogueContent);
     Timeline typewriter;
